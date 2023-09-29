@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        /* Styling for the thumbnail images */
+        .thumbnail {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        /* Styling for the enlarged image container */
+        .enlarged-image-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        /* Styling for the enlarged image */
+        .enlarged-image {
+            max-width: 90%;
+            max-height: 90%;
+            cursor: pointer;
+        }
+
+        /* Styling for the close button */
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Styling for the image gallery container */
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-gallery">
+        <!-- Thumbnail images -->
+        <img class="thumbnail" src="C:\Users\dell\Downloads\image1.png" alt="Image 1" onclick="enlargeImage('C:\Users\dell\Downloads\image1.png')">
+        <img class="thumbnail" src="C:\Users\dell\Downloads\image2.png" alt="Image 2" onclick="enlargeImage('C:\Users\dell\Downloads\image2.png')">
+        <img class="thumbnail" src="C:\Users\dell\Downloads\image3.png" alt="Image 3" onclick="enlargeImage('"C:\Users\dell\Downloads\image3.png"')">
+        <!-- Add more thumbnail images as needed -->
+
+        <!-- Enlarged image container -->
+        <div class="enlarged-image-container" id="enlarged-container">
+            <span class="close-button" onclick="closeImage()">&times;</span>
+            <img class="enlarged-image" id="enlarged-image">
+        </div>
+    </div>
+
+    <script>
+        // Function to enlarge the clicked image
+        function enlargeImage(imageSrc) {
+            var enlargedContainer = document.getElementById("enlarged-container");
+            var enlargedImage = document.getElementById("enlarged-image");
+
+            enlargedImage.src = imageSrc;
+            enlargedContainer.style.display = "flex";
+        }
+
+        // Function to close the enlarged image
+        function closeImage() {
+            var enlargedContainer = document.getElementById("enlarged-container");
+            enlargedContainer.style.display = "none";
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slideshow</title>
+    <style>
+        /* Styling for the slideshow container */
+        .slideshow-container {
+            max-width: 600px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        /* Styling for the slideshow images */
+        .slideshow-img {
+            display: none;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Styling for the next/previous buttons */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <!-- Slideshow images -->
+        <img class="slideshow-img" src="C:\Users\dell\Downloads\image1.png" alt="Image 1">
+        <img class="slideshow-img" src="C:\Users\dell\Downloads\image2.png" alt="Image 2">
+        <img class="slideshow-img" src="C:\Users\dell\Downloads\image3.png" alt="Image 3">
+        <!-- Add more slideshow images as needed -->
+
+        <!-- Previous and Next buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <script>
+        var slideIndex = 0;
+        showSlides();
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("slideshow-img");
+
+            if (slideIndex >= slides.length) {
+                slideIndex = 0;
+            }
+
+            if (slideIndex < 0) {
+                slideIndex = slides.length - 1;
+            }
+
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            slides[slideIndex].style.display = "block";
+
+            setTimeout(function () {
+                plusSlides(1);
+            }, 2000); // Change image every 2 seconds
+        }
+    </script>
+</body>
+</html>
